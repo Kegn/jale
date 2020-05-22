@@ -1,0 +1,4 @@
+- add more software versions
+- add webserver enum
+- maybe add colors
+- hunt for ssh keys
