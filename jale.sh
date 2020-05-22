@@ -17,8 +17,8 @@ usage() {
     echo "|                                      |" 
     echo "|                                      |"
     echo "|                                      |"
-    echo "| ex: ./yale.sh -u                     |"
-    echo "|     ./yale.sh -u                     |"
+    echo "| ex: ./yale.sh root                   |"
+    echo "|     ./yale.sh www-data               |"
     echo "|                                      |"
     echo "++++++++++++++++++++++++++++++++++++++++"
 }
