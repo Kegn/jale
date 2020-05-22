@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Just Another Linux Enumerator
-version="version 0.0.1"
+version="version 0.0.2"
 
 # run as low-privilege user
 # inspired by LinEnum
