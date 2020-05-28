@@ -120,10 +120,10 @@ echo ""
 cyan " ----- Writable Files ----- " 2>/dev/null
 echofg 2>/dev/null
 echo "files that we do NOT own:"
-find / -writable ! -user $(whoami) -type f ! -path "proc/*" ! -path "/sys/*" -exec ls -alh {} \; 2>/dev/null | spacing
+find / -writable ! -user $(whoami) -type f ! -path "/proc/*" ! -path "/sys/*" -exec ls -alh {} \; 2>/dev/null | spacing
 echo ""
 echo "files that we do own:"
-find / -writable -user $(whoami) -type f ! -path "proc/*" ! -path "/sys/*" -exec ls -alh {} \; 2>/dev/null | spacing
+find / -writable -user $(whoami) -type f ! -path "/proc/*" ! -path "/sys/*" -exec ls -alh {} \; 2>/dev/null | spacing
 
 }
 
@@ -133,10 +133,10 @@ echo ""
 cyan echo " ----- Writable Directories ----- " 2>/dev/null
 echofg 2>/dev/null
 echo "directories that we do NOT own:"
-find / -writable ! -user $(whoami) -type d ! -path "proc/*" ! -path "/sys/*" 2>/dev/null | spacing
+find / -writable ! -user $(whoami) -type d ! -path "/proc/*" ! -path "/sys/*" 2>/dev/null | spacing
 echo ""
 echo "directories that we do own:"
-find / -writable -user $(whoami) -type d ! -path "proc/*" ! -path "/sys/*" 2>/dev/null | spacing
+find / -writable -user $(whoami) -type d ! -path "/proc/*" ! -path "/sys/*" 2>/dev/null | spacing
 }
 
 hidden_files() {
@@ -144,7 +144,7 @@ echo ""
 cyan " ----- Hidden Files ----- " 2>/dev/null
 echofg 2>/dev/null
 echo "hidden files:"
-find / -name ".*" -type f ! -path "proc/*" ! -path "/sys/*" -exec ls -alh {} \; 2>/dev/null | spacing
+find / -name ".*" -type f ! -path "/proc/*" ! -path "/sys/*" -exec ls -alh {} \; 2>/dev/null | spacing
 }
 
 environment() {
