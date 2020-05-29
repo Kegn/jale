@@ -8,3 +8,8 @@
   - add experimental colors cyan, yellow, green, default
   - colorize section headers
   - add checks for more software versions
+## [v0.0.4] - 2020-05-29
+  - add printer info
+  - add crontab info
+  - add iptables
+

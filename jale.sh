@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Just Another Linux Enumerator
-version="version 0.0.3"
+version="version 0.0.4"
 
 # run as low-privilege user
 # inspired by LinEnum
@@ -16,8 +16,7 @@ usage() {
     echo "|                                      |" 
     echo "|                                      |"
     echo "|                                      |"
-    echo "| ex: ./yale.sh root                   |"
-    echo "|     ./yale.sh www-data               |"
+    echo "| ex: ./jale.sh                        |"
     echo "|                                      |"
     echo "++++++++++++++++++++++++++++++++++++++++"
 }
@@ -70,6 +69,7 @@ echo "shells       : "
 cat /etc/shells | grep -v "#" 2>/dev/null | spacing
 echo "release info : "
 echo "$(cat /etc/*-release 2>/dev/null | spacing)"
+echo "issue        : $(cat /etc/issue 2>/dev/null)"
 }
 
 user_info() {
@@ -87,6 +87,13 @@ echo "lastlog      : "
 echo "$(lastlog 2>/dev/null | grep -v "Never" 2>/dev/null | spacing)"
 echo "logged on    : "
 echo "$(w 2>/dev/null | spacing)"
+}
+
+printer_info() {
+echo ""
+cyan " ----- Printer Info ----- " 2>/dev/null
+echofg 2>/dev/null
+$(lpstat -a 2>/dev/null) | spacing
 }
 
 common_files() {
@@ -196,6 +203,42 @@ echo "Sudo Version     : $(sudo -V 2>/dev/null | grep 'Sudo version')"
     
 }
 
+crontab_info() {
+echo ""
+cyan " ----- Crontab Info ----- " 2>/dev/null
+echofg 2>/dev/null
+crontab -l 2>/dev/null | spacing
+echo "/var/spool/cron/" | spacing
+ls -alh /var/spool/cron 2>/dev/null | spacing
+echo ""
+echo "/etc/*cron*" | spacing
+ls -alh /etc/ 2>/dev/null | grep cron 2>/dev/null | spacing
+echo""
+echo "/etc/cron*" | spacing
+ls -alh /etc/cron* 2>/dev/null | spacing
+echo ""
+echo "/etc/at.allow :" | spacing
+cat /etc/at.allow 2>/dev/null | spacing
+echo ""
+echo "/etc/cron.allow :" | spacing
+cat /etc/cron.allow 2>/dev/null | spacing
+echo ""
+echo "/etc/crontab :" | spacing
+cat /etc/crontab 2>/dev/null | spacing
+echo ""
+echo "/etc/anacron :" | spacing
+cat /etc/anacron 2>/dev/null | spacing
+echo ""
+echo "/var/spool/cron/crontabs/root :" | spacing
+cat /var/spool/cron/crontabs/root 2>/dev/null | spacing
+}
+
+iptables_info() {
+echo ""
+cyan " ----- iptables rules ----- " 2>/dev/null
+echofg 2>/dev/null
+iptables -L 2>/dev/null | spacing
+}
 
 # eventually add discovery of virtualhosts
 # enabled_websites() {
@@ -225,6 +268,7 @@ main() {
 header
 target_user
 system_info
+printer_info
 user_info
 common_files
 writable_files
@@ -234,6 +278,8 @@ environment
 network_info
 svc_info
 software_versions
+crontab_info
+iptables_info
 }
 
 # call main
