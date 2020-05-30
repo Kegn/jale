@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Just Another Linux Enumerator
-version="version 0.0.4"
+version="version 0.0.5"
 
 # run as low-privilege user
 # inspired by LinEnum
@@ -154,6 +154,14 @@ echo "hidden files:"
 find / -name ".*" -type f ! -path "/proc/*" ! -path "/sys/*" -exec ls -alh {} \; 2>/dev/null | spacing
 }
 
+setuid_files() {
+find / -perm -u=s -type f ! -path "/proc/*" ! -path "/sys/*" -exec ls -alh {} \; 2>/dev/null | spacing
+}
+
+setgid_files() {
+find / -perm -g=s -type f -path "/proc/*" ! -path "/sys/*" -exec ls -alh {} \; 2>/dev/null | spacing
+}
+
 environment() {
 echo ""
 cyan " ----- Environment ----- "
@@ -271,6 +279,8 @@ system_info
 printer_info
 user_info
 common_files
+setuid_files
+setgid_files
 writable_files
 writable_dirs
 hidden_files

@@ -12,4 +12,6 @@
   - add printer info
   - add crontab info
   - add iptables
-
+## [v0.0.5] - 2020-05-29
+  - add suid files
+  - add sgid files
